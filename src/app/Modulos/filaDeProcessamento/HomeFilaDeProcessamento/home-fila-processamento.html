@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <app-menu-lateral
+        (enviarProcessos)="setDadosProcesso($event)"
+      ></app-menu-lateral>
+    </div>
+    <main>
+      <div class="processos">
+        <div class="processo" *ngFor="let processo of processos; index as i">
+          <strong>{{processo.nome}}</strong>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="criacao apontador">
+          <small>Criação</small>
+
+          <ng-template ngFor let-processo [ngForOf]="processos">
+            <div class="processo" *ngIf="processo.estado === 0">
+              <strong>{{processo.nome}}</strong>
+            </div>
+          </ng-template>
+        </div>
+        <div class="apto">
+          <small>Apto</small>
+
+          <ng-template ngFor let-processo [ngForOf]="processos">
+            <div class="processo" *ngIf="processo.estado === 1">
+              <strong>{{processo.nome}}</strong>
+            </div>
+          </ng-template>
+        </div>
+        <div class="executando">
+          <small>Executando</small>
+
+          <ng-template ngFor let-processo [ngForOf]="processos">
+            <div class="processo" *ngIf="processo.estado === 2">
+              <strong>{{processo.nome}}</strong>
+            </div>
+          </ng-template>
+        </div>
+        <div class="destruicao">
+          <small>Destruição</small>
+
+          <ng-template ngFor let-processo [ngForOf]="processos">
+            <div class="processo" *ngIf="processo.estado === 3">
+              <strong>{{processo.nome}}</strong>
+            </div>
+          </ng-template>
+        </div>
+        <div class="bloqueado">
+          <small>Bloqueado</small>
+
+          <ng-template ngFor let-processo [ngForOf]="processos">
+            <div class="processo" *ngIf="processo.estado === 4">
+              <strong>{{processo.nome}}</strong>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

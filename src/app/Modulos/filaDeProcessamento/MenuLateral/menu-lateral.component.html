@@ -1,0 +1,42 @@
+<div class="nav-side-menu col-12">
+  <div class="menu-list">
+    <input
+      [(ngModel)]="nome"
+      class="form-control"
+      placeholder="Nome"
+      id="inputCad"
+    />
+    <input
+      [(ngModel)]="tempoProcessador"
+      type="number"
+      class="form-control"
+      placeholder="Qtd. Páginas"
+      id="inputCad"
+    />
+    <input
+      [(ngModel)]="entradaSaida"
+      type="number"
+      class="form-control"
+      placeholder="Qtd. Páginas"
+      id="inputCad"
+    />
+
+    <button
+      class="btn btn-outline-primary"
+      id="btnCad"
+      (click)="criarProcesso()"
+    >
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      <b> Criar processo</b>
+    </button>
+
+    <button
+      class="btn btn-outline-primary"
+      id="btnCad"
+      (click)="criarProcesso()"
+    >
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      <b> Executar</b>
+    </button>
+  </div>
+</div>
