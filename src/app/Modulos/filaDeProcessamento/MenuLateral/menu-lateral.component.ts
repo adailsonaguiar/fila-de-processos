@@ -15,6 +15,7 @@ import {
 export class MenuLateralComponent implements OnInit, OnChanges {
   // @Input() public back: Number = new Number();
   @Output() public enviarProcessos: EventEmitter<any> = new EventEmitter();
+  @Output() public executarProcessosEvent: EventEmitter<any> = new EventEmitter();
 
   public processo = 1;
   public nome = '';
@@ -31,10 +32,13 @@ export class MenuLateralComponent implements OnInit, OnChanges {
       tempoProcessador: this.tempoProcessador,
       entradaSaida: this.entradaSaida,
       estado: 0,
-      id: new Date().valueOf()
+      id: new Date().valueOf(),
     });
   }
-  
+
+  executarProcessos() {
+    this.executarProcessosEvent.emit();
+  }
 
   constructor() {}
 }

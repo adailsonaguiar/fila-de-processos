@@ -26,13 +26,14 @@ export class HomeFilaDeProcessamento implements OnInit {
     id: string;
   }> = [];
 
-  ngOnInit(): void {
-    // this.setEstadoApto(this.processos[0].id, 2);
-    // console.log(this.processos.length)
-  }
+  ngOnInit(): void {}
 
   public setDadosProcesso(event: any) {
     this.processos.unshift(event);
+  }
+
+  start() {
+    this.setEstadoApto(this.processos[0].id, 1);
   }
 
   public setEstadoApto(idProcesso: string, tempo: number) {
@@ -41,17 +42,38 @@ export class HomeFilaDeProcessamento implements OnInit {
       return item;
     });
 
-    setInterval(() => {}, tempo * 1000);
-
-    this.setEstadoExecucao(idProcesso, 10);
+    setInterval(() => {
+      this.setEstadoExecucao(idProcesso);
+    }, tempo * 1000);
   }
 
-  public setEstadoExecucao(idProcesso: string, tempo: number) {
+  public setEstadoExecucao(idProcesso: string) {
+    let tempoProcessador = 1;
+
     this.processos = this.processos.map((item) => {
-      if (item.id === idProcesso) item.estado = 2;
+      if (item.id === idProcesso) {
+        item.estado = 2;
+
+        tempoProcessador = item.tempoProcessador;
+      }
       return item;
     });
 
-    setInterval(() => {}, tempo * 1000);
+    setInterval(() => {
+      this.setEstadoDestruicao(idProcesso);
+    }, tempoProcessador * 1000);
+  }
+
+  public setEstadoDestruicao(idProcesso: string) {
+    this.processos = this.processos.map((item) => {
+      if (item.id === idProcesso) {
+        item.estado = 3;
+      }
+      return item;
+    });
+
+    setInterval(() => {
+      this.processos = this.processos.filter((item) => item.id !== idProcesso);
+    }, 3000);
   }
 }
